@@ -1,0 +1,79 @@
+﻿<Page x:Class="UP.Pages.AuthPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      Background="{DynamicResource AppBackground}"
+      Foreground="{DynamicResource AppForeground}">
+
+    <Grid Width="800" Height="450" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="271*"/>
+            <ColumnDefinition Width="529*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="217*"/>
+            <RowDefinition Height="233*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Левая колонка -->
+        <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="40,80,0,0" VerticalAlignment="Top">
+            <TextBlock Text="Логин" Style="{StaticResource SubHeaderText}" Margin="0,0,0,6"/>
+            <TextBox x:Name="TextBoxLogin"
+                     Width="200" Height="34"
+                     Style="{StaticResource RoundedTextBox}"
+                     ToolTip="Введите логин или почту"
+                     TextChanged="TextBoxLogin_TextChanged"/>
+
+            <TextBlock Text="Пароль" Style="{StaticResource SubHeaderText}" Margin="0,12,0,6"/>
+            <PasswordBox x:Name="PasswordBox"
+                         Width="200" Height="34"
+                         Style="{StaticResource RoundedPasswordBox}"
+                         ToolTip="Введите пароль"/>
+
+            <!-- === КАПЧА === -->
+            <TextBlock Text="Введите код с картинки"
+                       Style="{StaticResource SubHeaderText}"
+                       Margin="0,12,0,6"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Image x:Name="CaptchaImage"
+                       Width="90" Height="34"
+                       Stretch="Fill"
+                       Margin="0,0,6,0"/>
+                <Button x:Name="ButtonRefreshCaptcha"
+                        Width="34" Height="34"
+                        Content="↻"
+                        Style="{StaticResource SmallAccentButton}"
+                        Click="ButtonRefreshCaptcha_Click"/>
+            </StackPanel>
+            <TextBox x:Name="TextBoxCaptcha"
+                     Width="200" Height="34"
+                     Style="{StaticResource RoundedTextBox}"
+                     ToolTip="Введите символы с картинки"
+                     Margin="0,6,0,0"/>
+        </StackPanel>
+
+        <!-- Правая колонка -->
+        <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
+                    VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button x:Name="ButtonAuth"
+                    Content="Войти"
+                    Width="160" Height="44"
+                    Style="{StaticResource PrimaryButton}"
+                    Margin="0,0,0,10"
+                    Click="ButtonAuth_Click"/>
+            <Button x:Name="ButtonReg"
+                    Content="Регистрация"
+                    Width="160" Height="38"
+                    Style="{StaticResource OutlineButton}"
+                    Margin="0,0,0,10"
+                    Click="ButtonReg_Click"/>
+            <Button x:Name="ButtonChangePassword"
+                    Content="Смена пароля"
+                    Width="160" Height="38"
+                    Style="{StaticResource GhostButton}"
+                    Click="ButtonChangePassword_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,99 @@
+﻿<Page x:Class="UP.Pages.AddUserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Добавление/Редактирование пользователя"
+      Background="{DynamicResource AppBackground}">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" Text="Данные пользователя"
+                   Style="{DynamicResource HeaderText}"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"/>
+
+        <!-- Карточка с формой -->
+        <Border Grid.Row="1" Style="{DynamicResource Card}">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Логин -->
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Логин:"
+                           Style="{DynamicResource BodyText}" 
+                           VerticalAlignment="Center" Margin="5"/>
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="TBLogin"
+                         Style="{DynamicResource RoundedTextBox}"
+                         Text="{Binding Login}" 
+                         ToolTip="Введите логин" Margin="5"/>
+
+                <!-- Пароль -->
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Пароль:"
+                           Style="{DynamicResource BodyText}" 
+                           VerticalAlignment="Center" Margin="5"/>
+                <PasswordBox Grid.Row="1" Grid.Column="1" x:Name="TBPassword"
+                             Style="{DynamicResource RoundedPasswordBox}"
+                             ToolTip="Введите пароль" Margin="5"/>
+
+                <!-- Роль -->
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Роль:"
+                           Style="{DynamicResource BodyText}" 
+                           VerticalAlignment="Center" Margin="5"/>
+                <ComboBox Grid.Row="2" Grid.Column="1" x:Name="cmbRole"
+                          Style="{DynamicResource CleanComboBox}"
+                          SelectedValue="{Binding Role}" Margin="5">
+                    <ComboBoxItem Content="User"/>
+                    <ComboBoxItem Content="Admin"/>
+                </ComboBox>
+
+                <!-- ФИО -->
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="ФИО:"
+                           Style="{DynamicResource BodyText}" 
+                           VerticalAlignment="Center" Margin="5"/>
+                <TextBox Grid.Row="3" Grid.Column="1" x:Name="TBFio"
+                         Style="{DynamicResource RoundedTextBox}"
+                         Text="{Binding FIO}"
+                         ToolTip="Введите ФИО" Margin="5"/>
+
+                <!-- Фото -->
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Фото (URL):"
+                           Style="{DynamicResource BodyText}" 
+                           VerticalAlignment="Center" Margin="5"/>
+                <TextBox Grid.Row="4" Grid.Column="1" x:Name="TBPhoto"
+                         Style="{DynamicResource RoundedTextBox}"
+                         Text="{Binding Photo}" 
+                         ToolTip="Введите URL фото" Margin="5"/>
+            </Grid>
+        </Border>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+            <Button x:Name="ButtonSave" Content="Сохранить"
+                    Style="{DynamicResource PrimaryButton}"
+                    Click="ButtonSave_Click" Width="140" Margin="10"/>
+            <Button x:Name="ButtonCancel" Content="Отмена"
+                    Style="{DynamicResource OutlineButton}"
+                    Click="ButtonCancel_Click" Width="140" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Page>

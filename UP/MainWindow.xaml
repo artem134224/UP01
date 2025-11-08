@@ -1,0 +1,92 @@
+﻿<Window x:Class="UP.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Система учета платежей"
+        MinHeight="600" MinWidth="900"
+        WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing"
+        Loaded="Window_Loaded"
+        Background="{DynamicResource AppBackground}"
+        Foreground="{DynamicResource AppForeground}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="51"/>
+            <!-- Шапка -->
+            <RowDefinition/>
+            <!-- Контент -->
+            <RowDefinition Height="36"/>
+            <!-- Статус-бар -->
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя панель -->
+        <Border Grid.Row="0"
+                Background="{DynamicResource AppSurface}"
+                BorderBrush="{DynamicResource AppBorder}"
+                BorderThickness="0,0,0,1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- Назад -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Заголовок -->
+                    <ColumnDefinition Width="220"/>
+                    <!-- Переключатель темы -->
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="BtnBack"
+                        Content="Назад"
+                        Margin="10,6,0,9"
+                        Style="{DynamicResource TopBarBackButton}"
+                        Click="BtnBack_Click" HorizontalAlignment="Left" Width="166" Grid.ColumnSpan="2"/>
+
+                <TextBlock Grid.Column="1"
+                           Text="Система учета платежей"
+                           VerticalAlignment="Center"
+                           Style="{DynamicResource HeaderText}" Margin="286,0,0,0"/>
+
+                <StackPanel Grid.Column="2"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            Margin="10">
+                    <TextBlock Text="Тема:"
+                               Margin="0,0,8,0"
+                               VerticalAlignment="Center"
+                               Style="{DynamicResource CaptionText}"/>
+                    <ComboBox x:Name="ThemeSelector"
+                              Width="150"
+                              SelectionChanged="ThemeSelector_SelectionChanged"
+                              Style="{DynamicResource CleanComboBox}">
+                        <ComboBoxItem Content="Светлая тема" Tag="Light" IsSelected="True"/>
+                        <ComboBoxItem Content="Тёмная тема"   Tag="Dark"/>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Основной контент -->
+        <Frame x:Name="MainFrame"
+               Grid.Row="1"
+               NavigationUIVisibility="Hidden"
+               Background="{DynamicResource AppBackground}"
+               ContentRendered="MainFrame_ContentRendered"/>
+
+        <!-- Нижняя панель: статус-бар с часами справа -->
+        <Border Grid.Row="2"
+                Background="{DynamicResource AppSurface}"
+                BorderBrush="{DynamicResource AppBorder}"
+                BorderThickness="0,1,0,0">
+            <StatusBar Background="{DynamicResource AppSurface}"
+                       Foreground="{DynamicResource AppForeground}"
+                       BorderThickness="0"
+                       Padding="8,0">
+                <StatusBarItem HorizontalAlignment="Right">
+                    <TextBlock x:Name="DateTimeNow"
+                               FontSize="12"
+                               Style="{DynamicResource CaptionText}"/>
+                </StatusBarItem>
+            </StatusBar>
+        </Border>
+    </Grid>
+</Window>

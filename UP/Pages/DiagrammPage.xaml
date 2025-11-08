@@ -1,0 +1,73 @@
+﻿<Page x:Class="UP.Pages.DiagrammPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+      xmlns:chart="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="1000"
+      Title="Диаграммы"
+      Background="{DynamicResource AppBackground}">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Панель фильтров/управления -->
+        <Border Grid.Row="0" Style="{DynamicResource Card}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="8" >
+                <TextBlock Text="Пользователь:" VerticalAlignment="Center" Margin="0,0,8,0"
+                           Style="{DynamicResource CaptionText}"/>
+                <ComboBox x:Name="CmbUser"
+                          Width="240"
+                          Style="{DynamicResource CleanComboBox}"
+                          SelectionChanged="OnSelectionChanged"
+                          Margin="0,0,12,0"
+                          DisplayMemberPath="FIO"
+                          SelectedValuePath="ID"/>
+
+                <TextBlock Text="Тип диаграммы:" VerticalAlignment="Center" Margin="12,0,8,0"
+                           Style="{DynamicResource CaptionText}"/>
+                <ComboBox x:Name="CmbDiagram"
+                          Width="170"
+                          Style="{DynamicResource CleanComboBox}"
+                          SelectionChanged="OnSelectionChanged"
+                          Margin="0,0,12,0"/>
+
+                <Button x:Name="BtnExportExcel" Content="Экспорт в Excel"
+                        Click="BtnExportExcel_Click"
+                        Style="{DynamicResource PrimaryButton}"
+                        Margin="8,0,0,0"/>
+
+                <Button x:Name="BtnExportWord" Content="Экспорт в Word"
+                        Click="BtnExportWord_Click"
+                        Style="{DynamicResource PrimaryButton}"
+                        Margin="8,0,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Диаграмма -->
+        <Border Grid.Row="1" Style="{DynamicResource Card}" Margin="0,12,0,0">
+            <wfi:WindowsFormsHost x:Name="WinFormsHost">
+                <chart:Chart x:Name="ChartPayments">
+                    <chart:Chart.Legends>
+                        <chart:Legend Name="legend" Docking="Top" />
+                    </chart:Chart.Legends>
+                    <chart:Chart.ChartAreas>
+                        <chart:ChartArea Name="mainArea">
+                            <chart:ChartArea.AxisX>
+                                <chart:Axis Title="Категории"/>
+                            </chart:ChartArea.AxisX>
+                            <chart:ChartArea.AxisY>
+                                <chart:Axis Title="Сумма (руб.)"/>
+                            </chart:ChartArea.AxisY>
+                        </chart:ChartArea>
+                    </chart:Chart.ChartAreas>
+                </chart:Chart>
+            </wfi:WindowsFormsHost>
+        </Border>
+    </Grid>
+</Page>

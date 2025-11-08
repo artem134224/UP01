@@ -1,0 +1,125 @@
+﻿<Page x:Class="UP.Pages.AddPaymentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      Title="Добавление/Редактирование платежа"
+      Background="{DynamicResource AppBackground}" Height="474" Width="825">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0"
+                   Text="Данные платежа"
+                   HorizontalAlignment="Center"
+                   Margin="0,4,0,12"
+                   Style="{DynamicResource HeaderText}"/>
+
+        <!-- Карточка формы -->
+        <Border Grid.Row="1"
+                Style="{DynamicResource Card}">
+            <Grid Margin="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Пользователь -->
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Пользователь" VerticalAlignment="Center"
+                           Margin="0,0,10,8" Style="{DynamicResource CaptionText}"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" x:Name="CBUser"
+                          DisplayMemberPath="FIO"
+                          SelectedValuePath="ID"
+                          SelectedValue="{Binding UserID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Style="{DynamicResource CleanComboBox}"
+                          Height="36" Margin="0,0,0,8"/>
+
+                <!-- Категория -->
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Категория" VerticalAlignment="Center"
+                           Margin="0,0,10,8" Style="{DynamicResource CaptionText}"/>
+                <ComboBox Grid.Row="1" Grid.Column="1" x:Name="CBCategory"
+                          DisplayMemberPath="Name"
+                          SelectedValuePath="ID"
+                          SelectedValue="{Binding CategoryID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Style="{DynamicResource CleanComboBox}"
+                          Height="36" Margin="0,0,0,8"/>
+
+                <!-- Название -->
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Название" VerticalAlignment="Center"
+                           Margin="0,0,10,8" Style="{DynamicResource CaptionText}"/>
+                <TextBox Grid.Row="2" Grid.Column="1" x:Name="TBPaymentName"
+                         Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{DynamicResource RoundedTextBox}"
+                         Height="36" Margin="0,0,0,8"
+                         ToolTip="Введите название платежа"/>
+
+                <!-- Дата -->
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Дата" VerticalAlignment="Center"
+                           Margin="0,0,10,8" Style="{DynamicResource CaptionText}"/>
+                <DatePicker Grid.Row="3" Grid.Column="1" x:Name="DPDate"
+                            SelectedDate="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Height="36" Margin="0,0,0,8"
+                            Background="{DynamicResource AppSurface}"
+                            Foreground="{DynamicResource AppForeground}"/>
+
+                <!-- Количество -->
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Количество" VerticalAlignment="Center"
+                           Margin="0,0,10,8" Style="{DynamicResource CaptionText}"/>
+                <TextBox Grid.Row="4" Grid.Column="1" x:Name="TBNum"
+                         Text="{Binding Num, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{DynamicResource RoundedTextBox}"
+                         Height="36" Margin="0,0,0,8"
+                         ToolTip="Введите количество"/>
+
+                <!-- Цена -->
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="Цена" VerticalAlignment="Center"
+                           Margin="0,0,10,8" Style="{DynamicResource CaptionText}"/>
+                <TextBox Grid.Row="5" Grid.Column="1" x:Name="TBPrice"
+                         Text="{Binding Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{DynamicResource RoundedTextBox}"
+                         Height="36" Margin="0,0,0,8"
+                         ToolTip="Введите цену"/>
+
+                <!-- Итого -->
+                <TextBlock Grid.Row="6" Grid.Column="1" x:Name="TotalAmountText"
+                           HorizontalAlignment="Right"
+                           Margin="0,4,0,0"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource AppAccent}"
+                           Text="Общая сумма: 0 ₽"/>
+            </Grid>
+        </Border>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,16,0,0">
+            <Button x:Name="ButtonSave"
+                    Content="Сохранить"
+                    Click="ButtonSave_Click"
+                    Width="150" Margin="6"
+                    Style="{DynamicResource PrimaryButton}"/>
+            <Button x:Name="ButtonCancel"
+                    Content="Отмена"
+                    Click="ButtonCancel_Click"
+                    Width="150" Margin="6"
+                    Style="{DynamicResource OutlineButton}"/>
+        </StackPanel>
+    </Grid>
+</Page>
